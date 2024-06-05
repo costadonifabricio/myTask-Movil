@@ -1,3 +1,5 @@
+// LoginScreen.js
+
 import React, { useState } from "react";
 import {
   View,
@@ -5,14 +7,20 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  ImageBackground,
 } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 const backgroundImageUrl =
-  "https://imgs.search.brave.com/lbXbFx-qlUwE39b4Fz9jxoUVZNtPmyAt-91tZxyTS8M/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQ1/NDk0OTUzNC9lcy9m/b3RvL2ZvbmRvLWRl/LW1hZGVyYS1ncmlz/LXRleHR1cmEtYWJz/dHJhY3RhLWRlLW1h/ZGVyYS1ncmlzLndl/YnA_Yj0xJnM9MTcw/NjY3YSZ3PTAmaz0y/MCZjPTk2Z1hDdWNw/NFNzV0RXMG1zRWV5/ZGFnWTJUa05NRlk5/WXlGemVkWjJIQnc9"; // Puedes reemplazar esto con la URL de tu imagen
+  "https://imgs.search.brave.com/lbXbFx-qlUwE39b4Fz9jxoUVZNtPmyAt-91tZxyTS8M/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQ1/NDk0OTUzNC9lcy9m/b3RvL2ZvbmRvLWRl/LW1hZGVyYS1ncmlz/LXRleHR1cmEtYWJz/dHJhY3RhLWRlLW1h/ZGVyYS1ncmlzLndl/YnA_Yj0xJnM9MTcw/NjY3YSZ3PTAmaz0y/MCZjPTk2Z1hDdWNw/NFNzV0RXMG1zRWV5/ZGFnWTJUa05NRlk5/WXlGemVkWjJIQnc9";
 
-export default function LoginScreen({ navigation }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+export default function LoginScreen() {
+  const navigation = useNavigation();
+  const route = useRoute();
+  const { username: defaultUsername, password: defaultPassword } =
+    route.params || {};
+  const [username, setUsername] = useState(defaultUsername || "");
+  const [password, setPassword] = useState(defaultPassword || "");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -24,16 +32,13 @@ export default function LoginScreen({ navigation }) {
       setErrorMessage("Ingrese una contraseña");
       setSuccessMessage("");
     } else {
-      // Verificamos las credenciales del usuario (simulado)
-      if (username === "usuario" && password === "contraseña") {
-        // Si las credenciales son válidas, redirigimos al usuario a la pantalla de inicio
+      if (username === defaultUsername && password === defaultPassword) {
         setErrorMessage("");
         setSuccessMessage("¡Inicio de sesión exitoso!");
-        // Limpia los campos de entrada después del inicio de sesión exitoso
         setUsername("");
         setPassword("");
+        navigation.navigate("welcome");
       } else {
-        // Si las credenciales son inválidas, mostramos un mensaje de error
         setErrorMessage("Credenciales incorrectas. Inténtelo de nuevo.");
         setSuccessMessage("");
       }
@@ -42,35 +47,36 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.background} />
-      <View style={styles.content}>
-        <Text style={styles.title}>Inicio de Sesión</Text>
-        {errorMessage ? (
-          <Text style={styles.errorMessage}>{errorMessage}</Text>
-        ) : null}
-        {successMessage ? (
-          <Text style={styles.successMessage}>{successMessage}</Text>
-        ) : null}
-        <TextInput
-          style={styles.input}
-          placeholder="Usuario"
-          value={username}
-          onChangeText={setUsername}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Contraseña"
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-        />
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Iniciar Sesión</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("register")}>
-          <Text style={styles.link}>¿No tienes una cuenta? Regístrate</Text>
-        </TouchableOpacity>
-      </View>
+      <ImageBackground
+        source={{ uri: backgroundImageUrl }}
+        style={styles.background}
+      >
+        <View style={styles.content}>
+          <Text style={styles.title}>Inicio de Sesión</Text>
+          {errorMessage ? (
+            <Text style={styles.errorMessage}>{errorMessage}</Text>
+          ) : null}
+          {successMessage ? (
+            <Text style={styles.successMessage}>{successMessage}</Text>
+          ) : null}
+          <TextInput
+            style={styles.input}
+            placeholder="Usuario"
+            value={username}
+            onChangeText={setUsername}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Contraseña"
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+          />
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Iniciar Sesión</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -80,15 +86,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   background: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "#000",
-    backgroundImage: `url(${backgroundImageUrl})`,
-    backgroundSize: "cover",
-    zIndex: -1,
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
   content: {
     flex: 1,
@@ -122,11 +122,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 16,
-  },
-  link: {
-    marginTop: 10,
-    color: "blue",
-    textDecorationLine: "underline",
   },
   errorMessage: {
     color: "red",
