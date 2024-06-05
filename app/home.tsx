@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Dimensions,
   ImageBackground,
 } from "react-native";
 import { Link } from "expo-router";
@@ -22,8 +21,8 @@ export default function HomeScreen() {
         <View style={styles.content}>
           <Text style={styles.welcomeText}>¡Bienvenido a mi Aplicación!</Text>
           <Animatable.Image
-            animation="fadeInDown" // Animación de desvanecimiento hacia abajo
-            duration={1000} // Duración de la animación en milisegundos
+            animation="fadeInDown"
+            duration={1000} 
             source={require("../assets/images/goku.png")}
             style={styles.image}
             resizeMode="contain"
@@ -63,24 +62,24 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
     textAlign: "center",
-    color: "black", // Color del texto
+    color: "black",
   },
   image: {
-    width: 300, // Ajusta el tamaño según tus necesidades
-    height: 300, // Ajusta el tamaño según tus necesidades
+    width: 300, 
+    height: 300, 
     marginBottom: 20,
   },
   buttonContainer: {
-    flexDirection: "row", // Para colocar los botones en forma horizontal
+    flexDirection: "row", 
   },
   button: {
-    backgroundColor: "#007bff", // Color de fondo del botón
+    backgroundColor: "#007bff",
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 5,
     marginBottom: 10,
-    marginRight: 10, // Espacio entre los botones
-    color: "#fff", // Color del texto del botón
+    marginRight: 10, 
+    color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
