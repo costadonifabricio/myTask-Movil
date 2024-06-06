@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "app/register.tsx", "app/login.tsx", "app/listask.tsx", "app/viewtask.tsx", "app/editask.tsx"  ]
 }

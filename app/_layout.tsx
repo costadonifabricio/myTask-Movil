@@ -3,7 +3,6 @@ import LoginScreen from "./login";
 import HomeScreen from "./home";
 import RegisterScreen from "./register";
 import WelcomeScreen from "./welcome";
-import NotFoundScreen from "./+not-found";
 import AddTaskScreen from "./addtask";
 import TaskListScreen from "./listask";
 import EditTaskScreen from "./editask";
@@ -15,7 +14,6 @@ const Stack = createStackNavigator();
 export default function RootLayout() {
   return (
     <Stack.Navigator initialRouteName="home">
-      <Stack.Screen name="+not-found" component={NotFoundScreen} />
       <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen name="login" component={LoginScreen} />
       <Stack.Screen name="welcome" component={WelcomeScreen} />
