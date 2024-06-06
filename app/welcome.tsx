@@ -10,6 +10,7 @@ export default function WelcomeScreen() {
       <Link href="/listask" style={styles.link}>Lista de tareas</Link>
       <Link href="/addtask" style={styles.link}>Agregar tarea</Link>
       <Link href="/editask" style={styles.link}>Editar tarea</Link>
+      <Link href="/settings" style={styles.link}>Configuraciones</Link>
     </View>
   );
 }

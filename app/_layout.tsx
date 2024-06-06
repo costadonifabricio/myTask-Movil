@@ -7,6 +7,8 @@ import NotFoundScreen from "./+not-found";
 import AddTaskScreen from "./addtask";
 import TaskListScreen from "./listask";
 import EditTaskScreen from "./editask";
+import ViewTaskScreen from "./viewtask";
+import SettingsScreen from "./settings";
 
 const Stack = createStackNavigator();
 
@@ -21,6 +23,8 @@ export default function RootLayout() {
       <Stack.Screen name="addtask" component={AddTaskScreen} />
       <Stack.Screen name="listask" component={TaskListScreen} />
       <Stack.Screen name="editask" component={EditTaskScreen} />
+      <Stack.Screen name="viewtask" component={ViewTaskScreen} />
+      <Stack.Screen name="settings" component={SettingsScreen} />
     </Stack.Navigator>
   );
 }

@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5",
   },
   input: {
-    width: "30%", // Cambiado a 80% para que se ajuste mejor a la pantalla
+    width: "30%", 
     height: 50,
     borderColor: "#ddd",
     borderWidth: 1,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   buttonContainer: {
-    width: "30%", // Asegura que el botón esté alineado con los campos de entrada
+    width: "30%",
     marginTop: 10,
   },
 });

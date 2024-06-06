@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5",
   },
   input: {
-    width: "30%", // Ancho ajustado al 80% del ancho de la pantalla
+    width: "30%", 
     height: 50,
     borderColor: "#ddd",
     borderWidth: 1,
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   buttonContainer: {
-    width: "30%", // Ancho ajustado al 80% del ancho de la pantalla
+    width: "30%", 
     marginTop: 10,
   },
 });

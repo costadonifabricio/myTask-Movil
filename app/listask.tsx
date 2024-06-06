@@ -16,7 +16,7 @@ export default function TaskListScreen({ navigation }) {
         <TouchableOpacity
           key={task.id}
           style={styles.taskItem}
-          onPress={() => navigation.navigate("viewtask", { taskId: task.id })}
+          onPress={() => navigation.navigate("viewtask", { task })}
         >
           <Text style={styles.taskTitle}>{task.title}</Text>
         </TouchableOpacity>
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
     marginVertical: 10,
-    width: "20%",
+    width: "90%",
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
